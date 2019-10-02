@@ -11,7 +11,7 @@ module.exports = {
     },
     async store(request, response) {
 
-        const { filename } = request.file;
+        const { filename: thumbnail } = request.file;
         const { company, price, techs } = request.body;
         const { user } = request.headers;
 
@@ -23,12 +23,12 @@ module.exports = {
 
         const spot = await Spot.create({
             user,
-            thumbnail: filename,
+            thumbnail,
             company,
             techs: techs.split(',').map(tech => tech.trim()),
             price,
         })
 
         return response.json(spot);
-    }    
+    }
 }
