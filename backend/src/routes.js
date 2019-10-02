@@ -15,12 +15,12 @@ const BookingController = require('./controllers/BookingController');
 
 routes.post('/auth', AuthController.store);
 
-routes.post('/spots', upload.single('thumbnail'), SpotController.store);
-
 routes.get('/spots', SpotController.index);
 
-routes.get('/dashboard', DashboardController.show);
+routes.post('/spots', upload.single('thumbnail'), SpotController.store);
 
 routes.post('/spots/:id/bookings', BookingController.store);
+
+routes.get('/dashboard', DashboardController.show);
 
 module.exports = routes;
